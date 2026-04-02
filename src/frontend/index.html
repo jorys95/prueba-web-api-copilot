@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valencia Weather Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Cormorant+Garamond:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="paper-grain" aria-hidden="true"></div>
+
+    <main class="weather-desk" aria-live="polite">
+      <header class="desk-header">
+        <p class="kicker">Edicion en tiempo real</p>
+        <h1>Valencia Meteorological Bulletin</h1>
+        <p class="subtitle">Temperatura y viento convertidos al instante desde Open-Meteo.</p>
+      </header>
+
+      <section class="status-panel" id="status-panel">
+        <div class="loader-mark" aria-hidden="true"></div>
+        <p id="status-text">Sincronizando datos de observacion...</p>
+      </section>
+
+      <section class="metrics" id="metrics" hidden>
+        <article class="metric-card temp-card">
+          <h2>Temperatura</h2>
+          <p class="metric-value" id="temperature-value">--</p>
+          <p class="metric-unit">grados Celsius</p>
+        </article>
+
+        <article class="metric-card wind-card">
+          <h2>Velocidad del viento</h2>
+          <div class="wind-grid">
+            <div>
+              <p class="wind-value" id="wind-ms">--</p>
+              <p class="metric-unit">metros por segundo</p>
+            </div>
+            <div>
+              <p class="wind-value" id="wind-mph">--</p>
+              <p class="metric-unit">millas por hora</p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

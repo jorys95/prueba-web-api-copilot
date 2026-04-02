@@ -1,0 +1,201 @@
+:root {
+  --paper: #f2ede3;
+  --ink: #101010;
+  --ink-soft: #3b3b3b;
+  --accent: #cc2f1a;
+  --accent-soft: #f0b5ad;
+  --card: #fffdf8;
+  --line: #1d1d1d;
+  --error: #7a1206;
+  --shadow: rgba(16, 16, 16, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Archivo Narrow", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 14%, var(--accent-soft), transparent 30%),
+    radial-gradient(circle at 83% 20%, #d9ceb6, transparent 34%),
+    linear-gradient(160deg, #e6dfd0 0%, var(--paper) 42%, #ddd2bb 100%);
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(transparent 95%, rgba(0, 0, 0, 0.05) 95%),
+    linear-gradient(90deg, transparent 96%, rgba(0, 0, 0, 0.04) 96%);
+  background-size: 100% 4px, 4px 100%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.26;
+}
+
+.weather-desk {
+  width: min(960px, 100%);
+  border: 2px solid var(--line);
+  background: var(--card);
+  box-shadow: 14px 14px 0 var(--shadow);
+  position: relative;
+  padding: clamp(1.2rem, 4vw, 2.4rem);
+  overflow: hidden;
+}
+
+.weather-desk::before {
+  content: "VALENCIA";
+  position: absolute;
+  right: -28px;
+  top: 12px;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.3rem 2.3rem;
+  transform: rotate(35deg);
+}
+
+.desk-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+}
+
+.kicker {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.desk-header h1 {
+  margin: 0.45rem 0 0.4rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.9rem, 7vw, 3.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 55ch;
+}
+
+.status-panel {
+  margin-top: 1.3rem;
+  border: 1px dashed var(--line);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 0.95rem;
+  font-size: 1rem;
+  background: linear-gradient(120deg, #fcf8ef, #f6efdf);
+}
+
+.loader-mark {
+  width: 18px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid var(--accent-soft);
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+
+.metrics {
+  margin-top: 1.45rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.metric-card {
+  border: 2px solid var(--line);
+  padding: 1rem;
+  min-height: 220px;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.metrics.is-visible .metric-card {
+  animation: revealCard 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.metrics.is-visible .metric-card:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.metric-card h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+}
+
+.metric-value,
+.wind-value {
+  margin: 0.7rem 0 0.25rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1;
+}
+
+.metric-unit {
+  margin: 0;
+  text-transform: lowercase;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+}
+
+.wind-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 0.65rem;
+}
+
+.status-panel.is-error {
+  border-style: solid;
+  border-color: var(--error);
+  background: #fde6e1;
+  color: var(--error);
+}
+
+.status-panel.is-error .loader-mark {
+  animation: none;
+  border-color: var(--error);
+  background: var(--error);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes revealCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .weather-desk {
+    box-shadow: 8px 8px 0 var(--shadow);
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+}
