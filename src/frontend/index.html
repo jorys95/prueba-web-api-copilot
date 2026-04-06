@@ -22,7 +22,7 @@
         <p class="subtitle">Temperatura y viento convertidos al instante desde Open-Meteo.</p>
       </header>
 
-      <section class="status-panel" id="status-panel">
+      <section class="status-panel is-loading" id="status-panel">
         <div class="loader-mark" aria-hidden="true"></div>
         <p id="status-text">Sincronizando datos de observacion...</p>
       </section>
@@ -32,6 +32,17 @@
           <h2>Temperatura</h2>
           <p class="metric-value" id="temperature-value">--</p>
           <p class="metric-unit">grados Celsius</p>
+          <div class="temperature-visual">
+            <div class="thermometer" id="thermometer" aria-hidden="true">
+              <div class="thermo-stem">
+                <div class="thermo-fill" id="thermo-fill"></div>
+              </div>
+              <div class="thermo-bulb"></div>
+            </div>
+            <div class="temp-meta">
+              <p class="meta-line">Nivel termico: <strong id="thermal-state">--</strong></p>
+            </div>
+          </div>
         </article>
 
         <article class="metric-card wind-card">
@@ -44,6 +55,17 @@
             <div>
               <p class="wind-value" id="wind-mph">--</p>
               <p class="metric-unit">millas por hora</p>
+            </div>
+          </div>
+          <div class="extra-data">
+            <p class="meta-line">Direccion: <strong id="wind-direction">--</strong></p>
+            <p class="meta-line">
+              Condicion: <strong id="weather-condition">--</strong>
+              <span class="meta-code" id="weather-code">(WMO --)</span>
+            </p>
+            <div class="condition-visual" id="condition-visual">
+              <span class="condition-icon" id="condition-icon" aria-hidden="true">○</span>
+              <p class="condition-caption" id="condition-caption">Sin clasificar</p>
             </div>
           </div>
         </article>

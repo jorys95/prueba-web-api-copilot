@@ -4,7 +4,8 @@ import { getWeatherData } from "../services/weather.service";
 
 export async function getWeather(req: Request, res: Response): Promise<void> {
   try {
-    const { temperature, windspeed } = await getWeatherData();
+    const { temperature, windspeed, winddirection, weathercode } =
+      await getWeatherData();
     const windSpeedMs = kmhToMs(windspeed);
     const windSpeedMph = msToMph(windSpeedMs);
 
@@ -15,7 +16,9 @@ export async function getWeather(req: Request, res: Response): Promise<void> {
         wind_speed: {
           ms: windSpeedMs,
           mph: windSpeedMph
-        }
+        },
+        wind_direction_degrees: winddirection,
+        weather_code: weathercode
       }
     });
   } catch (error) {

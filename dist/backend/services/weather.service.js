@@ -33,11 +33,15 @@ async function getWeatherData() {
     const currentWeather = payload.current_weather;
     if (!currentWeather ||
         typeof currentWeather.temperature !== "number" ||
-        typeof currentWeather.windspeed !== "number") {
-        throw new WeatherServiceError("Open-Meteo no devolvio current_weather con temperature y windspeed validos.");
+        typeof currentWeather.windspeed !== "number" ||
+        typeof currentWeather.winddirection !== "number" ||
+        typeof currentWeather.weathercode !== "number") {
+        throw new WeatherServiceError("Open-Meteo no devolvio current_weather con campos validos de temperatura, viento y codigo meteorologico.");
     }
     return {
         temperature: currentWeather.temperature,
-        windspeed: currentWeather.windspeed
+        windspeed: currentWeather.windspeed,
+        winddirection: currentWeather.winddirection,
+        weathercode: currentWeather.weathercode
     };
 }

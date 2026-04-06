@@ -5,7 +5,7 @@ const weather_converter_1 = require("../utils/weather-converter");
 const weather_service_1 = require("../services/weather.service");
 async function getWeather(req, res) {
     try {
-        const { temperature, windspeed } = await (0, weather_service_1.getWeatherData)();
+        const { temperature, windspeed, winddirection, weathercode } = await (0, weather_service_1.getWeatherData)();
         const windSpeedMs = (0, weather_converter_1.kmhToMs)(windspeed);
         const windSpeedMph = (0, weather_converter_1.msToMph)(windSpeedMs);
         res.status(200).json({
@@ -15,7 +15,9 @@ async function getWeather(req, res) {
                 wind_speed: {
                     ms: windSpeedMs,
                     mph: windSpeedMph
-                }
+                },
+                wind_direction_degrees: winddirection,
+                weather_code: weathercode
             }
         });
     }
